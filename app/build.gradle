@@ -79,6 +79,11 @@ dependencies {
 
     // Koin main features for Android
     implementation "io.insert-koin:koin-android:$koin_version"
-
     implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+
+    //Dagger
+    implementation 'com.google.dagger:dagger:2.42'
+    kapt 'com.google.dagger:dagger-compiler:2.42'
+//    implementation 'javax.inject:javax.inject:1'
+
 }

@@ -4,19 +4,34 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import my.project.usecasepractice.app.App
 import my.project.usecasepractice.databinding.ActivityMainBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel: MainViewModel by viewModel()
+    //Инжектим фабрику для вью модели, напрямую почему то нельзя пробрасывать view model
+    //lateinit var for Dagger
+    @Inject
+    lateinit var vmFactory: MainViewModelFactory
+
+    private lateinit var mainViewModel: MainViewModel
+
+    //mainViewModel for Di Koin
+//    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        (applicationContext as App).appComponent.inject(this)
+
         Log.e("AAA", "Activity crated")
+
+        //Пробрасываем в активити view model
+        mainViewModel = ViewModelProvider(this, vmFactory)
+            .get(MainViewModel::class.java)
 
 
         mainViewModel.resultLive.observe(this) { text ->
