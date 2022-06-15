@@ -2,6 +2,8 @@ package my.project.usecasepractice.di
 
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import my.project.usecasepractice.domain.repository.UserRepository
 import my.project.usecasepractice.domain.useCases.GetUserNameUseCase
 import my.project.usecasepractice.domain.useCases.SaveUserNameUseCase
@@ -14,24 +16,42 @@ import my.project.usecasepractice.domain.useCases.SaveUserNameUseCase
 //    SaveUserNameUseCase(userRepository = userRepository)
 //}
 
-//Dagger
+
+//Hilt
 @Module
+@InstallIn(ViewModelComponent::class)
 class DomainModule {
 
-    ////Предоставляется Use Case'ы из Domain модуля
-//    @Provides
-//    fun provideGetNameUseCase(userRepository: UserRepository): GetUserNameUseCase {
-//        //То есть возвращается нужная нам реализация этого интерфейса
-//        return GetUserNameUseCase(userRepository = userRepository)
-//    }
-//
-//    @Provides
-//    fun provideSaveUserNameUseCase(userRepository: UserRepository): SaveUserNameUseCase {
-//        //То есть возвращается нужная нам реализация этого интерфейса
-//        return SaveUserNameUseCase(userRepository = userRepository)
-//    }
+    @Provides
+    fun provideGetNameUseCase(userRepository: UserRepository): GetUserNameUseCase {
+        return GetUserNameUseCase(userRepository = userRepository)
+    }
 
+    @Provides
+    fun provideSaveUserNameUseCase(userRepository: UserRepository): SaveUserNameUseCase {
+        return SaveUserNameUseCase(userRepository = userRepository)
+    }
 }
+
+
+//Dagger
+//@Module
+//class DomainModule {
+//
+//    ////Предоставляется Use Case'ы из Domain модуля
+////    @Provides
+////    fun provideGetNameUseCase(userRepository: UserRepository): GetUserNameUseCase {
+////        //То есть возвращается нужная нам реализация этого интерфейса
+////        return GetUserNameUseCase(userRepository = userRepository)
+////    }
+////
+////    @Provides
+////    fun provideSaveUserNameUseCase(userRepository: UserRepository): SaveUserNameUseCase {
+////        //То есть возвращается нужная нам реализация этого интерфейса
+////        return SaveUserNameUseCase(userRepository = userRepository)
+////    }
+//
+//}
 
 
 //Koin

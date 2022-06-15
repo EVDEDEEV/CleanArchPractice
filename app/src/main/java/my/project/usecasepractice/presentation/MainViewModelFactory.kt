@@ -12,6 +12,8 @@ class MainViewModelFactory @Inject constructor(
     val saveUserNameUseCase: SaveUserNameUseCase,
 ) : ViewModelProvider.Factory {
 
+    //Для Hilt не нужна фабрика вью модели т.к он предоставляет её сам!!
+
 
     //without Di
 //    private val getUserNameUseCase by lazy(LazyThreadSafetyMode.NONE) {
