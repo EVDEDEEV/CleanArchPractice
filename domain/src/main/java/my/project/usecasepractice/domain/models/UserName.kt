@@ -1,3 +1,3 @@
 package my.project.usecasepractice.domain.models
 
-class UserName(val firstName: String, val lastName: String)
+data class UserName(val firstName: String, val lastName: String)
