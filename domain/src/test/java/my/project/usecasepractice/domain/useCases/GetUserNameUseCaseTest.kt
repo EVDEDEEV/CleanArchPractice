@@ -32,7 +32,5 @@ class GetUserNameUseCaseTest {
         val expected = UserName(firstName = "test first name", lastName = "test last name")
 
         Assertions.assertEquals(expected, actual)
-
-
     }
 }
